@@ -3,8 +3,14 @@ import { CssBaseline, Grid } from "@mui/material";
 import Header from "./Header/Header";
 import List from "./List/List";
 import Map from "./Map/Map";
+import { useLoadScript } from "@react-google-maps/api";
+
 
 function App() {
+
+const { isLoaded } = useLoadScript({
+  googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY});
+
   return (
     <>
       <CssBaseline />
@@ -14,7 +20,7 @@ function App() {
           <List />
         </Grid>
         <Grid item xs={12} md={8}>
-          <Map />
+          {isLoaded && <Map />}
         </Grid>
 
       </Grid>
